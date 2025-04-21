@@ -54,8 +54,10 @@ function Home() {
               >
                 <div className="space-y-1 text-sm text-gray-700">
                   <p>
-                    <strong>Date:</strong> {food.date}
+                    <strong>Date:</strong>{" "}
+                    {new Date(food.date).toLocaleDateString("en-GB")}
                   </p>
+
                   <p>
                     <strong>Morning:</strong> {food.morning} (
                     {food.morningCalories} cal)

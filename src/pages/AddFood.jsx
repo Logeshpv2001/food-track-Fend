@@ -44,6 +44,7 @@ function AddFood() {
               {key.replace(/([A-Z])/g, " $1")}
             </label>
             <input
+              type={key === "date" ? "date" : "text"} // 👈 This line is the key
               name={key}
               value={value}
               onChange={handleChange}
@@ -53,6 +54,7 @@ function AddFood() {
             />
           </div>
         ))}
+
         <button
           type="submit"
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition duration-200"
