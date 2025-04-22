@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import AddFood from "./pages/AddFood";
 import EditFood from "./pages/EditFood";
 import Navbar from "./components/Navbar";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -12,9 +14,11 @@ function App() {
       <div className="min-h-screen bg-gray-100">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Login />} />
           <Route path="/add" element={<AddFood />} />
           <Route path="/edit/:id" element={<EditFood />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </div>
     </Router>

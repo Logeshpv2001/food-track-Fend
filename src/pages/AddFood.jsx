@@ -26,9 +26,8 @@ function AddFood() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await AxiosInstance.post("/api/foods", form);
-    console.log(form)
+    console.log(form);
     navigate("/");
-    
   };
 
   return (

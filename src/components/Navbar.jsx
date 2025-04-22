@@ -1,18 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    navigate("/");
+  };
   return (
     <nav className="bg-blue-600 text-white px-6 py-4 shadow-md">
       <div className="flex justify-between items-center">
-        <h1 className="text-xl font-bold ">🍽️ Food Tracker</h1>
-        <div className="space-x-4 flex justify-center bg-red-500">
-          <Link to="/" className="hover:underline ">
+        <h1 className="text-xl font-bold ">
+          <Link to="/home">🍽️ Food Tracker</Link>
+        </h1>
+        <div className="space-x-4">
+          <Link to="/home" className="hover:underline ">
             Home
           </Link>
           <Link to="/add" className="hover:underline">
             Add Food
           </Link>
+          <button onClick={handleLogout}>Log out</button>
         </div>
       </div>
     </nav>
