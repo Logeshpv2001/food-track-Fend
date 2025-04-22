@@ -9,6 +9,7 @@ function Home() {
   const fetchFoods = async () => {
     try {
       const res = await AxiosInstance.get("/api/foods");
+      console.log(res);
       const data = Array.isArray(res.data) ? res.data : [];
       setFoods(data);
     } catch (error) {
@@ -36,7 +37,7 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-tr from-blue-100 via-white to-blue-200 p-6">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-extrabold text-center text-blue-700 mb-8 animate-fade-in">
           🍱 Tracked Food Entries
         </h2>
@@ -46,69 +47,80 @@ function Home() {
             No food entries found. Start tracking your meals today!
           </p>
         ) : (
-          <div className="grid gap-6">
-            {foods.map((food) => (
-              <div
-                key={food._id}
-                className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col md:flex-row justify-between items-start md:items-center"
-              >
-                <div className="space-y-1 text-sm text-gray-700">
-                  <p>
-                    <strong>Date:</strong>{" "}
-                    {new Date(food.date).toLocaleDateString("en-GB")}
-                  </p>
+          <div className="overflow-x-auto bg-white rounded-2xl shadow-lg">
+            <table className="min-w-full table-auto border-collapse">
+              <thead className="bg-blue-200 text-blue-800 text-sm">
+                <tr>
+                  <th className="px-4 py-2">Date</th>
+                  <th className="px-4 py-2">Morning</th>
+                  <th className="px-4 py-2">Morning Snack</th>
+                  <th className="px-4 py-2">Afternoon</th>
+                  <th className="px-4 py-2">Evening Snack</th>
+                  <th className="px-4 py-2">Night</th>
+                  <th className="px-4 py-2">Total Calories</th>
+                  <th className="px-4 py-2">Edit</th>
+                  <th className="px-4 py-2">Delete</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm text-gray-700">
+                {foods.map((food) => {
+                  const totalCalories = [
+                    food.morningCalories,
+                    food.morningSnackCalories,
+                    food.afternoonCalories,
+                    food.eveningSnackCalories,
+                    food.nightCalories,
+                  ]
+                    .map((cal) => parseInt(cal) || 0)
+                    .reduce((a, b) => a + b, 0);
 
-                  <p>
-                    <strong>Morning:</strong> {food.morning} (
-                    {food.morningCalories} cal)
-                  </p>
-                  <p>
-                    <strong>Morning Snacks:</strong> {food.morningSnack} (
-                    {food.morningSnackCalories} cal)
-                  </p>
-                  <p>
-                    <strong>Afternoon:</strong> {food.afternoon} (
-                    {food.afternoonCalories} cal)
-                  </p>
-                  <p>
-                    <strong>Evening Snacks:</strong> {food.eveningSnack} (
-                    {food.eveningSnackCalories} cal)
-                  </p>
-                  <p>
-                    <strong>Night:</strong> {food.night} ({food.nightCalories}{" "}
-                    cal)
-                  </p>
-                  <p className="font-semibold mt-2">
-                    Total Calories:{" "}
-                    {[
-                      food.morningCalories,
-                      food.morningSnackCalories,
-                      food.afternoonCalories,
-                      food.eveningSnackCalories,
-                      food.nightCalories,
-                    ]
-                      .map(Number)
-                      .reduce((a, b) => a + b, 0)}{" "}
-                    cal
-                  </p>
-                </div>
-
-                <div className="mt-4 md:mt-0 space-x-3">
-                  <Link
-                    to={`/edit/${food._id}`}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg transition"
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    onClick={() => deleteFood(food._id)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            ))}
+                  return (
+                    <tr
+                      key={food._id}
+                      className="border-b hover:bg-blue-50 transition"
+                    >
+                      <td className="px-4 py-2 font-medium">
+                        {new Date(food.date).toLocaleDateString("en-GB")}
+                      </td>
+                      <td className="px-4 py-2">
+                        {food.morning} ({food.morningCalories} cal)
+                      </td>
+                      <td className="px-4 py-2">
+                        {food.morningSnack} ({food.morningSnackCalories} cal)
+                      </td>
+                      <td className="px-4 py-2">
+                        {food.afternoon} ({food.afternoonCalories} cal)
+                      </td>
+                      <td className="px-4 py-2">
+                        {food.eveningSnack} ({food.eveningSnackCalories} cal)
+                      </td>
+                      <td className="px-4 py-2">
+                        {food.night} ({food.nightCalories} cal)
+                      </td>
+                      <td className="px-4 py-2 font-semibold">
+                        {totalCalories} cal
+                      </td>
+                      <td className="px-4 py-2 space-x-2">
+                        <Link
+                          to={`/edit/${food._id}`}
+                          className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md text-sm"
+                        >
+                          Edit
+                        </Link>
+                      </td>
+                      <td className="px-4 py-2 space-x-2">
+                        <button
+                          onClick={() => deleteFood(food._id)}
+                          className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
         )}
       </div>
