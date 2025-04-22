@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AxiosInstance from "../utilities/AxiosInstance";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 function Home() {
   const [foods, setFoods] = useState([]);
@@ -23,6 +24,7 @@ function Home() {
   const deleteFood = async (id) => {
     try {
       await AxiosInstance.delete(`/api/foods/${id}`);
+      toast.success("Deleted Successfully");
       fetchFoods();
     } catch (error) {
       console.error("Error deleting food entry:", error);

@@ -7,6 +7,7 @@ import EditFood from "./pages/EditFood";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import { Toaster } from "sonner";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/edit/:id" element={<EditFood />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
+        <Toaster theme="light" position="top-right" />;
       </div>
     </Router>
   );

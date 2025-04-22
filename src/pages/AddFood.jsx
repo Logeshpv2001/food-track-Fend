@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AxiosInstance from "../utilities/AxiosInstance";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 function AddFood() {
   const [form, setForm] = useState({
@@ -27,6 +28,7 @@ function AddFood() {
     e.preventDefault();
     await AxiosInstance.post("/api/foods", form);
     console.log(form);
+    toast.success("Food Added Successfully");
     navigate("/home");
   };
 

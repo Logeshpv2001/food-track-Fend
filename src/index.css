@@ -69,3 +69,14 @@ button:focus-visible {
 } */
 
 @import "tailwindcss";
+/* index.css */
+:root {
+  --toast-bg: #2563eb; /* Tailwind's bg-blue-600 */
+  --toast-color: white;
+  --toast-border-radius: 0.5rem;
+}
+
+.toaster[data-theme='light'] {
+  --toast-bg: #2563eb;
+  --toast-color: white;
+}

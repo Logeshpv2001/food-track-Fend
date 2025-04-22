@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AxiosInstance from "../utilities/AxiosInstance";
+import { toast } from "sonner";
 
 function EditFood() {
   const [form, setForm] = useState(null);
@@ -18,6 +19,7 @@ function EditFood() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await AxiosInstance.put(`/api/foods/${id}`, form);
+    toast.success("Edited Successfully");
     navigate("/");
   };
 

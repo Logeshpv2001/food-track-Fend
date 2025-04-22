@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import batlogo from "../assets/bat-logo.png";
 import AxiosInstance from "../utilities/AxiosInstance";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+
 const Login = () => {
   const [loginData, setLoginData] = useState({
     email: "",
@@ -19,7 +21,8 @@ const Login = () => {
     try {
       const res = await AxiosInstance.post("/api/user-login", loginData);
       console.log("Login successful", res);
-      alert("Login Sucessfull");
+      toast.success("Login Successfull");
+      // alert("Login Sucessfull");
       navigate("/home");
     } catch (error) {
       console.error(

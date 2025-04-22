@@ -1,9 +1,11 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 function Navbar() {
   const navigate = useNavigate();
   const handleLogout = () => {
+    toast.success("Logout Successful");
     navigate("/");
   };
   return (
