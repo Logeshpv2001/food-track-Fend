@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 function AddFood() {
+  const userEmail = sessionStorage.getItem("userEmail");
+
   const [form, setForm] = useState({
     date: "",
     morning: "",
@@ -16,6 +18,7 @@ function AddFood() {
     eveningSnackCalories: "",
     night: "",
     nightCalories: "",
+    email: userEmail,
   });
 
   const navigate = useNavigate();

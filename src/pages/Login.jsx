@@ -22,6 +22,7 @@ const Login = () => {
       const res = await AxiosInstance.post("/api/user-login", loginData);
       console.log("Login successful", res);
       toast.success("Login Successfull");
+      sessionStorage.setItem("userEmail", loginData.email);
       // alert("Login Sucessfull");
       navigate("/home");
     } catch (error) {

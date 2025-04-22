@@ -7,9 +7,13 @@ function Home() {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const userEmail = sessionStorage.getItem("userEmail");
+  console.log(userEmail);
+
   const fetchFoods = async () => {
     try {
-      const res = await AxiosInstance.get("/api/foods");
+      const userEmail = sessionStorage.getItem("userEmail");
+      const res = await AxiosInstance.get(`/api/foodsforusers/${userEmail}`);
       console.log(res);
       const data = Array.isArray(res.data) ? res.data : [];
       setFoods(data);
