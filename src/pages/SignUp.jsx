@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import batlogo from "../assets/bat-logo.png";
 import AxiosInstance from "../utilities/AxiosInstance";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const SignUp = () => {
   const [registerData, setRegisterData] = useState({
@@ -23,9 +24,10 @@ const SignUp = () => {
     try {
       await AxiosInstance.post("/api/user-register", registerData);
       console.log(registerData);
+      toast.success("Registred Successfully");
       navigate("/");
     } catch (error) {
-      alert("Can't add User");
+      toast.error("Can't add User");
     }
   };
   return (
