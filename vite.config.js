@@ -11,9 +11,9 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "robots.txt"],
       manifest: {
-        name: "My Vite React PWA",
-        short_name: "VitePWA",
-        description: "A React + Vite Progressive Web App",
+        name: "My Food Track",
+        short_name: "Food Track",
+        description: "Food Track PWA fully developed by Logesh PV",
         theme_color: "#ffffff",
         background_color: "#ffffff",
         display: "standalone",
