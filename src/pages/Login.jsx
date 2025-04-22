@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import batlogo from "../assets/bat-logo.png";
 import AxiosInstance from "../utilities/AxiosInstance";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const [loginData, setLoginData] = useState({
     email: "",
@@ -117,6 +117,15 @@ const Login = () => {
                 Sign in
               </button>
             </div>
+            <p className="mt-4 text-center text-sm text-gray-600">
+              Don't have an account?{" "}
+              <Link
+                to="/signup"
+                className="font-medium text-indigo-600 hover:text-indigo-500"
+              >
+                Sign Up
+              </Link>
+            </p>
           </form>
         </div>
       </div>

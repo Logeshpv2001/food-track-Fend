@@ -51,7 +51,6 @@ function AddFood() {
               onChange={handleChange}
               placeholder={`Enter ${key.replace(/([A-Z])/g, " $1")}`}
               className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-              required
             />
           </div>
         ))}

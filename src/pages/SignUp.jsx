@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import batlogo from "../assets/bat-logo.png";
 import AxiosInstance from "../utilities/AxiosInstance";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [registerData, setRegisterData] = useState({
@@ -17,16 +17,11 @@ const SignUp = () => {
   const handleChange = (e) => {
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
   };
-  
-  
 
   const registeruser = async (e) => {
     e.preventDefault();
     try {
-      await AxiosInstance.post(
-        "/api/user-register",
-        registerData
-      );
+      await AxiosInstance.post("/api/user-register", registerData);
       console.log(registerData);
       navigate("/");
     } catch (error) {
@@ -160,6 +155,15 @@ const SignUp = () => {
                 Sign up
               </button>
             </div>
+            <p className="mt-4 text-center text-sm text-gray-600">
+              Already have an account?{" "}
+              <Link
+                to="/"
+                className="font-medium text-indigo-600 hover:text-indigo-500"
+              >
+                Login
+              </Link>
+            </p>
           </form>
         </div>
       </div>
