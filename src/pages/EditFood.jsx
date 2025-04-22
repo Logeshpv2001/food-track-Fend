@@ -18,9 +18,9 @@ function EditFood() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await AxiosInstance.put(`/api/foods/${id}`, form);
+    await AxiosInstance.patch(`/api/foods/${id}`, form);
     toast.success("Edited Successfully");
-    navigate("/");
+    navigate("/home");
   };
 
   if (!form) return <p className="p-6">Loading...</p>;
@@ -45,7 +45,6 @@ function EditFood() {
               onChange={handleChange}
               placeholder={`Update ${key.replace(/([A-Z])/g, " $1")}`}
               className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-400"
-              required
             />
           </div>
         ))}
