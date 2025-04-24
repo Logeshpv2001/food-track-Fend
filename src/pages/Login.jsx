@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import batlogo from "../assets/bat-logo.png";
 import AxiosInstance from "../utilities/AxiosInstance";
+import Cookies from "js-cookie"; // Import js-cookie
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -21,9 +22,9 @@ const Login = () => {
     try {
       const res = await AxiosInstance.post("/api/user/user-login", loginData);
       console.log("Login successful", res);
+        // Store the JWT token in cookies
+        Cookies.set("token", res.data.token, { expires: 7 }); // Token stored for 7 days
       toast.success("Login Successfull");
-      // sessionStorage.setItem("userEmail", loginData.email);
-      // alert("Login Sucessfull");
       navigate("/home");
     } catch (error) {
       console.error(
@@ -36,14 +37,6 @@ const Login = () => {
 
   return (
     <>
-      {/*
-            This example requires updating your template:
-    
-            ```
-            <html class="h-full bg-white">
-            <body class="h-full">
-            ```
-          */}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -85,14 +78,6 @@ const Login = () => {
             </div>
 
             <div>
-              {/* <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-sm/6 font-medium text-gray-900"
-                >
-                  Password
-                </label>
-              </div> */}
               <div className="mt-2">
                 <label
                   htmlFor="password"
