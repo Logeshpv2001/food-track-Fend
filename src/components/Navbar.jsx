@@ -19,7 +19,7 @@ function Navbar() {
       console.error(error);
     }
 
-    toast.success("Logout Successful");
+    // toast.success("Logout Successful");
     navigate("/");
   };
   return (
