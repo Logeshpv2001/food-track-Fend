@@ -1,10 +1,24 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import AxiosInstance from "../utilities/AxiosInstance";
 
 function Navbar() {
   const navigate = useNavigate();
-  const handleLogout = () => {
+
+  const handleLogout = async () => {
+    try {
+      const response = await AxiosInstance.post("/api/user/user-logout");
+      if (response.data.success) {
+        toast.success(response.data.message);
+      } else {
+        toast.error("logout failed");
+      }
+    } catch (error) {
+      toast.error("An error occurred while logging out");
+      console.error(error);
+    }
+
     toast.success("Logout Successful");
     navigate("/");
   };

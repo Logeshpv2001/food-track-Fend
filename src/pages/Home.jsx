@@ -12,8 +12,7 @@ function Home() {
 
   const fetchFoods = async () => {
     try {
-      const userEmail = sessionStorage.getItem("userEmail");
-      const res = await AxiosInstance.get(`/api/foodsforusers/${userEmail}`);
+      const res = await AxiosInstance.get(`/api/foodsforusers`);
       console.log(res);
       const data = Array.isArray(res.data) ? res.data : [];
       setFoods(data);
@@ -24,6 +23,10 @@ function Home() {
       setLoading(false);
     }
   };
+
+  // useEffect(() => {},  
+  
+  // []);
 
   const deleteFood = async (id) => {
     try {

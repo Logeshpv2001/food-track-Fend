@@ -13,16 +13,16 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setLoginData({ ...loginData, [e.target.name]: [e.target.value] });
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
   const userLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await AxiosInstance.post("/api/user-login", loginData);
+      const res = await AxiosInstance.post("/api/user/user-login", loginData);
       console.log("Login successful", res);
       toast.success("Login Successfull");
-      sessionStorage.setItem("userEmail", loginData.email);
+      // sessionStorage.setItem("userEmail", loginData.email);
       // alert("Login Sucessfull");
       navigate("/home");
     } catch (error) {

@@ -22,12 +22,13 @@ const SignUp = () => {
   const registeruser = async (e) => {
     e.preventDefault();
     try {
-      await AxiosInstance.post("/api/user-register", registerData);
+      await AxiosInstance.post("/api/user/user-register", registerData);
       console.log(registerData);
       toast.success("Registred Successfully");
       navigate("/");
-    } catch (error) {
-      toast.error("Can't add User");
+    }catch (error) {
+      console.error("Error adding user:", error); // Log the detailed error to the console
+      toast.error("Can't add User: " + error.message); // Display the error message in the toast
     }
   };
   return (
