@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import AxiosInstance from "../utilities/AxiosInstance";
+import Cookies from "js-cookie";
 
 function Navbar() {
   const navigate = useNavigate();

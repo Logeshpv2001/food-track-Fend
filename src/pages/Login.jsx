@@ -22,8 +22,9 @@ const Login = () => {
     try {
       const res = await AxiosInstance.post("/api/user/user-login", loginData);
       console.log("Login successful", res);
-        // Store the JWT token in cookies
-        // Cookies.set("token", res.data.token, { expires: 7 }); // Token stored for 7 days
+
+      // Store the JWT token in cookies
+      Cookies.set("token", res.data.token, { expires: 7 });
       toast.success("Login Successfull");
       navigate("/home");
     } catch (error) {

@@ -15,11 +15,9 @@ function App() {
   useEffect(() => {
     // Check if the token exists in cookies
     const token = Cookies.get("token");
-    if (token) {
-      // If token exists, navigate to /home
-      navigate("/home");
-    }
-  }, [navigate]);
+    // console.log(token, "token");
+    token ? navigate("/home") : navigate("/");
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100">
